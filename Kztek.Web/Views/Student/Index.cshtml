@@ -1,0 +1,168 @@
+﻿    @using Kztek.Model.CustomModel
+@using Kztek.Web.Core.Extensions
+@model PageModel<Kztek.Model.Models.Student>
+@{
+    ViewBag.Title = "Hệ thống";
+    string controller = this.ViewContext.RouteData.Values["controller"].ToString();
+
+}
+
+<div class="page-header">
+    <h1>
+        Danh sách sinh viên
+    </h1>
+
+
+</div>
+
+<div class="row">
+    @using (Html.BeginForm("Index", "Student", FormMethod.Get , new { id ="frmStudent"}))
+    {
+        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12 divboxmd">
+            <input type="text" name="key" value="@ViewBag.keyValue" placeholder="Từ khóa..." class="form-control" />
+        </div>
+        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12 divboxmd">
+            @Html.Action("Actions", "Home", new { ActionName = "Search", ControllerName = controller })
+            @Html.Action("Actions", "Home", new { ActionName = "Index", ControllerName = controller })
+
+
+        </div>
+    }
+</div>
+
+<div class="hr hr-18 dotted hr-24"></div>
+
+<div class="row">
+    <div class="col-xs-12">
+         @Html.Action("Actions", "Home", new  { ActionName = "Create", ControllerName = controller })
+    </div>
+</div>
+
+<div class="hr hr-18 dotted hr-24"></div>
+<div class="row">
+    <div class="col-xs-12">
+        <table id="simple-table" class="table  table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="center hidden-480">Id</th>
+                    <th class="center">Tên người dùng</th>
+                    <th class="center hidden-480">Email</th>
+                    <th class="center hidden-480">Số điện thoại</th>
+                    <th class="center hidden-480">Giới tính</th>
+                    <th class="center hidden-480">Birthday</th>
+                    <th class="center hidden-480">Trạng thái</th>
+                    <th class="center">Xử lý</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Data.Any())
+                {
+                    foreach (var item in Model.Data)
+                    {
+                <tr>
+                    <td class="text-left hidden-480">
+                        @item.Id
+                    </td>
+                    <td class="text-left hidden-480">
+                        @item.Fullname
+                    </td>
+                    <td class="text-left hidden-480"> 
+                        @item.Email
+                    </td>
+                    <td class="text-left hidden-480">
+                         @item.Phone
+                    </td>
+                    <td class="text-left hidden-480">
+                        @item.Gender
+                    </td>
+                    <td class="text-left hidden-480">
+                    @if (item.Birthday != null)
+                    {
+                        <span> @Convert.ToDateTime(item.Birthday).ToString("dd/MM/yyyy")</span>
+                    }
+                    </td>
+                    <td class="text-left hidden-480">
+                        @if (item.Active == true)
+                        {
+                            <span class="label label-sm label-success">Kích hoạt</span>
+                        }
+                        else
+                        {
+                            <span class="label label-sm label-warning">Chưa kích hoat</span>
+                        }
+                    </td>
+                    <td class="center">
+                        <div class="btn-group">
+                            @Html.Action("Actions", "Home", new { ActionName = "Update", ControllerName = controller, id = item.Id })
+
+                            @Html.Action("Actions", "Home", new { ActionName = "Delete", ControllerName = controller, id =  item.Id })
+                        </div>
+
+                    </td>
+                </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (Model.Data.Any())
+
+    {
+
+        <div class="col-xs-12">
+            <div class="pull-right">
+                @Html.GeneratePagingFooter(Model.TotalPage,  Model.PageIndex, Model.PageSize, "pagination", x => Url.Action("Index", "Student", new
+           {
+
+               page = x,
+               key = ViewBag.keyValue,
+
+           }))
+            </div>
+        </div>
+    }
+
+
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $('button[name=btnFilter]').click(function () {
+                $('#frmStudent').submit();
+            });
+
+
+
+            $('.btnDelete').click(function () {
+                var cmd = $(this);
+                var _id = cmd.attr('idata');
+
+                bootbox.confirm("Bạn chắc chắn muốn xóa bản ghi này?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: ('/Student/Delete'),
+                            data: { id: _id },
+                            type: 'json',
+                            //async:false,
+                            success: function (data) {
+                                $('#frmStudent').load("/Student");
+
+                                if (data.isSuccess) {
+
+                                    bootbox.success(data.Message,"Xóa thành công")
+                                    cmd.parent().fadeOut();
+                                } else {
+                                    toastr.error(data.Message, 'Không xóa được  ');
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+    
+    }

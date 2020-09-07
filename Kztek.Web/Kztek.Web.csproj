@@ -193,6 +193,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuFunctionController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WebInfoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1603,6 +1604,7 @@
     <Content Include="Templates\AwesomeIcon.xml" />
     <Content Include="Templates\Chord0.mp3" />
     <Content Include="Templates\Country.xml" />
+    <Content Include="Templates\DataGenerate\ScriptTable.sql" />
     <Content Include="Templates\DataGenerate\DataGenerate.sql" />
     <Content Include="Templates\DataGenerate\paging-SQL.txt" />
     <Content Include="Templates\DataGenerate\Trigger-breakCrumb.txt" />
@@ -1668,11 +1670,16 @@
     <Content Include="Views\User\Update.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\WebInfo\Index.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Student\Update.cshtml" />
+    <Content Include="Views\Student\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
     <Folder Include="Scripts\editors\ckeditor\plugins\clipboard\dialogs\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

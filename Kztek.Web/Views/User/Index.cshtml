@@ -1,4 +1,4 @@
-﻿@using Kztek.Model.CustomModel
+﻿        @using Kztek.Model.CustomModel
 @using Kztek.Web.Core.Extensions
 @model PageModel<Kztek.Model.Models.User>
 
@@ -130,6 +130,7 @@
            {
                page = x,
                key = ViewBag.keyValue,
+               
            }))
             </div>
         </div>
@@ -138,7 +139,7 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            SearchSubmit("frmUser");
+            SearchSubmit("frmStudent");
 
             DeleteSubmit('/Admin/User/Delete');
 

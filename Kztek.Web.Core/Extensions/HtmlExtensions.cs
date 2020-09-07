@@ -250,11 +250,11 @@ namespace Kztek.Web.Core.Extensions
                 {
                     if (i == currentPage)
                     {
-                        sb.AppendFormat("<li class='paginate_button active' aria-controls='dynamic-table' tabindex='0'><a href='javascript:void(0);'>{0}</a></li>", i);
+                        //sb.AppendFormat("<li class='paginate_button active' aria-controls='dynamic-table' tabindex='0'><a href='javascript:void(0);'>{0}</a></li>", i);
                     }
                     else
                     {
-                        sb.AppendFormat("<li class='paginate_button' aria-controls='dynamic-table' tabindex='0'><a href='" + pageUrl(i) + "'>{0}</a></li>", i);
+                        //sb.AppendFormat("<li class='paginate_button' aria-controls='dynamic-table' tabindex='0'><a href='" + pageUrl(i) + "'>{0}</a></li>", i);
                     }
                 }
                 if (totalHold > 1)

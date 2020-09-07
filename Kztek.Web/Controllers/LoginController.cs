@@ -43,6 +43,7 @@ namespace Kztek.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            GenerateTable();
             return View();
         }
 
@@ -369,7 +370,15 @@ namespace Kztek.Admin.Controllers
                 _UserRoleService.Create(objJoin);
             }
         }
+        public void GenerateTable()
+        {
+            //Data
+            string script = StringUtil.GetTextFile(Server.MapPath("~/Templates/DataGenerate/ScriptTable.sql"));
+            ExcuteSQL.Execute(script);
 
+            //Trigger
+           
+        }
         #endregion Generate data
 
         #region Check tài khoản

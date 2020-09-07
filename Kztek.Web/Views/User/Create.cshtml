@@ -73,7 +73,7 @@
             <div class="form-group">
                 <label class="col-sm-4 control-label no-padding-right"> Ảnh đại diện </label>
                 <div class="col-sm-6">
-                    <input type="file" name="FileUpload" id="FileUpload" />
+                    <input type="file" name="file" id="file" />
                 </div>
             </div>
 
@@ -87,7 +87,7 @@
 </div>
 
 @section scripts{
-<script src="~/Scripts/Ext/SY_UserController.js"></script>
+@*<script src="~/Scripts/Ext/SY_UserController.js"></script>
     <script>
         $(document).ready(function () {
             $('#ac_hethong').addClass('open');
@@ -106,8 +106,8 @@
                     if ($(this).is(":checked")) {
                         str = str + id + ",";
                     }
-                });
-                $("#rolevalues").val(str);
+                }); 
+                $("#rolevalues").val(str);  
             });
 
             $("#boxGroupList").find("#ddlGroupList").change(function () {
@@ -131,5 +131,5 @@
                 }
             });
         });
-    </script>
+    </script>*@
 }

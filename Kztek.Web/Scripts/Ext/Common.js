@@ -221,7 +221,7 @@ function DeleteSubmit(url) {
                             toastr.success(data.Message, 'Thông báo');
                         } else {
                             toastr.error(data.Message, 'Thông báo');
-                        }
+                        }  
                     }
                 });
             }

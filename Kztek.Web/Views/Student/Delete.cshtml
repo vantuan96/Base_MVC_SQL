@@ -1,0 +1,62 @@
+﻿@model  Kztek.Model.Models.Student
+    ViewData["Title"] = "Delete";
+}
+<h2>delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Contact</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.HiddenFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <div>
+            <dd>
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+        </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+
+    </dl>
+    @using (Html.BeginForm("Delete","Student"))
+    {
+
+        <div class="form-actions no-color">
+            <div id="Click"></div>
+            <div id="show"></div>
+            <button type="button" class="btn btn-default" name="btnShow">Click</button>
+            <button type="button" class="btn btn-default" name="btnUpdate">Delete</button>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

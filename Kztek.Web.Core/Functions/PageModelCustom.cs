@@ -23,6 +23,8 @@ namespace Kztek.Web.Core.Functions
             return PageModel;
         }
 
+
+
         /// <summary>
         /// HNG: Hàm phân trang nhưng lấy theo tổng số bản ghi
         /// Dùng trong trường hợp truy vấn là ExcuteSQL

@@ -30,12 +30,14 @@ namespace Kztek.Data
         public DbSet<WebInfo> WebInfos { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<Trash> Trashs { get; set; }
-     
+     public DbSet<Student> Student { get; set; }
+
         public virtual void Commit()
         {
             base.SaveChanges();
         }
 
+        [System.Obsolete]
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

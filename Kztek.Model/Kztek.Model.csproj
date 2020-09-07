@@ -84,10 +84,12 @@
     <Compile Include="CustomModel\SelectListModel.cs" />
     <Compile Include="CustomModel\TotalPaging.cs" />
     <Compile Include="CustomModel\TotalPrice.cs" />
+    <Compile Include="Enum\Gender.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\MenuFunction.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\RoleMenu.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Trash.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserConfig.cs" />

@@ -20,7 +20,7 @@ namespace Kztek.Service.Admin
         IPagedList<User> GetAllPagingByFirst(string key, int pageNumber, int pageSize);
 
         User GetById(string id);
-        User GetByUserName(string name);
+        User GetByUserName(string name);    
         User GetByEmail(string email);
 
         User GetByUserNameOREmail(string name);

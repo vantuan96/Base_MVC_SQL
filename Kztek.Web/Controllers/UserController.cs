@@ -61,7 +61,7 @@ namespace Kztek.Web.Controllers
         public ActionResult Index(string key, int page = 1)
         {
             //Khai báo
-            int pageSize = 20;
+            int pageSize = 2;
 
             //Lấy danh sách phân trang
             var list = _UserService.GetAllPagingByFirst(key, page, pageSize);
@@ -99,9 +99,9 @@ namespace Kztek.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.Selected = "";
+            //ViewBag.Selected = "";
 
-            ViewBag.urlValue = url;
+            //ViewBag.urlValue = url;
 
             return View();
         }
@@ -119,7 +119,7 @@ namespace Kztek.Web.Controllers
         /// <param name="SaveAndCountinue">Tiếp tục thêm</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Create(User obj, string repass, string rolevalues, HttpPostedFileBase FileUpload, bool SaveAndCountinue = false)
+        public ActionResult Create(User obj, string repass, string rolevalues, HttpPostedFileBase file, bool SaveAndCountinue = false)
         {
             //
             ViewBag.Selected = rolevalues;
@@ -189,10 +189,10 @@ namespace Kztek.Web.Controllers
 
 
             //File upload
-            if (FileUpload != null)
+            if (file != null)
             {
-                var extension = Path.GetExtension(FileUpload.FileName) ?? "";
-                var fileName = Path.GetFileName(string.Format("{0}{1}", StringUtil.RemoveSpecialCharactersVn(FileUpload.FileName.Replace(extension, "")).GetNormalizeString(), extension));
+                var extension = Path.GetExtension(file.FileName) ?? "";
+                var fileName = Path.GetFileName(string.Format("{0}{1}", StringUtil.RemoveSpecialCharactersVn(file.FileName.Replace(extension, "")).GetNormalizeString(), extension));
                 obj.UserAvatar = string.Format("{0}{1}", ConfigurationManager.AppSettings["uploadfolder"], fileName);
             }
 
@@ -278,6 +278,7 @@ namespace Kztek.Web.Controllers
 
             //Kiểm tra
             var oldObj = _UserService.GetById(obj.Id);
+            
             if (oldObj == null)
             {
                 ViewBag.Error = "Bản ghi không tồn tại";
@@ -289,16 +290,16 @@ namespace Kztek.Web.Controllers
                 return View(oldObj);
             }
 
-            var isExisted = _UserService.GetByUserName_Id(oldObj.Username, oldObj.Id.ToString());
-            if (isExisted != null)
-            {
-                ModelState.AddModelError("Username", "Tên đăng nhập đã tồn tại");
-                return View(oldObj);
-            }
+            //var isExisted = _UserService.GetByUserName_Id(oldObj.Username, oldObj.Id.ToString());
+            //if (isExisted != null)
+            //{
+            //    ModelState.AddModelError("Username", "Tên đăng nhập đã tồn tại");
+            //    return View(oldObj);
+            //}
 
             //Gán giá trị
-            oldObj.Username = obj.Username;
-            oldObj.Active = obj.Active;
+            //oldObj.Username = obj.Username;
+            //oldObj.Active = obj.Active;
             oldObj.Admin = obj.Admin;
 
             //Kiểm tra là tài khoản admin

@@ -79,6 +79,7 @@
     <Compile Include="Admin\MenuFunctionService.cs" />
     <Compile Include="Admin\RoleMenuService.cs" />
     <Compile Include="Admin\RoleService.cs" />
+    <Compile Include="Admin\StudentService.cs" />
     <Compile Include="Admin\TrashService.cs" />
     <Compile Include="Admin\UserConfigService.cs" />
     <Compile Include="Admin\UserRoleService.cs" />
