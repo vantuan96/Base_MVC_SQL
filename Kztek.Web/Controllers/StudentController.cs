@@ -99,8 +99,8 @@ namespace Kztek.Web.Controllers
         [HttpPost]
         public ActionResult Update (Student  obj , HttpPostedFileBase file)
                     {
-            
 
+            string error = string.Empty;
             //Kiểm tra
             //var oldObj = _StudentService.GetById(obj.Id);
             //if (oldObj == null)
@@ -124,12 +124,18 @@ namespace Kztek.Web.Controllers
             //oldObj.Fullname = obj.Fullname;
             //oldObj.Active = obj.Active;
             //File upload
+            //if (file != null)
+            //{
+            //    var extension = Path.GetExtension(file.FileName) ?? "";
+            //    var fileName = Path.GetFileName(string.Format("{0}{1}", StringUtil.RemoveSpecialCharactersVn(file.FileName.Replace(extension, "")).GetNormalizeString(), extension));
+            //    obj.UserAvatar = string.Format("{0}{1}", ConfigurationManager.AppSettings["uploadfolder"], fileName);
+
             if (file != null)
             {
-                var extension = Path.GetExtension(file.FileName) ?? "";
-                var fileName = Path.GetFileName(string.Format("{0}{1}", StringUtil.RemoveSpecialCharactersVn(file.FileName.Replace(extension, "")).GetNormalizeString(), extension));
-                obj.UserAvatar = string.Format("{0}{1}", ConfigurationManager.AppSettings["uploadfolder"], fileName);
+                obj.UserAvatar = string.Format("{0}/{1}", ConfigurationManager.AppSettings["uploadfolder"], Common.UploadImages(out error, Server.MapPath(ConfigurationManager.AppSettings["uploadfolder"]), file));
             }
+
+
             //Thực hiện cập nhật
             var result = _StudentService.Update(obj);
             if (result.isSuccess)
